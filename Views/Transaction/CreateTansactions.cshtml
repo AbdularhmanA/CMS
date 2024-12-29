@@ -1,0 +1,115 @@
+﻿@using CMSApp.ViewModels
+@model CreateTansactionsViewModel;
+<link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true" />
+<div class="container">
+    <header>
+        <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+        <div class="header-text" style="text-align:center">
+            <h1>أمانة منطقة حائل</h1>
+            <h2>HAIL REGION MUNICIPALITY</h2>
+        </div>
+        <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+    </header>
+    </div>
+<div class="account-container">
+    <div class="account-box">
+        <h2 class="text-center mb-4">إنشاء معاملات</h2>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 text-right">
+                </div>
+                <div class="col-md-4 text-center">
+                    <h2>إنشاء معاملات</h2>
+                </div>
+                <div class="col-md-4 text-left">
+                </div>
+            </div>
+
+            <form asp-action="CreateTansactions" enctype="multipart/form-data" method="post">
+                <div class="row">
+                    <!-- القسم الأيمن -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="TransactionNumber">رقم المعاملة:</label>
+                            <input type="text" asp-for="TransactionNumber" id="transactionNumber" class="form-control" placeholder="رقم المعاملة" />
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TransactionType">نوع المعاملة:</label>
+                            <select asp-for="TransactionType" class="form-control">
+                                <option value="طلب خدمة">طلب خدمة</option>
+                                <option value="شكوى">شكوى</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="TransactionStatus">حالة المعاملة:</label>
+                            <select asp-for="TransactionStatus" id="transactionStatus" class="form-control">
+                                <option value="عاجلة">عاجلة</option>
+                                <option value="غير عاجلة">غير عاجلة</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- القسم الأيسر -->
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="TransactionNature">طبيعة المعاملة:</label>
+                            <select asp-for="TransactionNature" id="transactionNature" class="form-control">
+                                <option value="تستوجب الرد">تستوجب الرد</option>
+                                <option value="لاتستوجب الرد">لاتستوجب الرد</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="SelectedRecipientId">اختيار جهة المستقبل (المسمى الوظيفي - الاسم):</label>
+                            <select asp-for="SelectedRecipientId" class="form-control" id="recipientSelect">
+                                <option value="">-- اختر جهة المستقبل --</option>
+                                @foreach (var recipient in Model.AvailableRecipients)
+                                {
+                                    <option value="@recipient.Value">@recipient.Text</option> <!-- يعرض JobTitle و FullName -->
+                                }
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Attachments">المرفقات:</label>
+                            <input asp-for="Attachments" type="file" id="attachment" class="form-control" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الملاحظات في الصف الخاص بها -->
+                <div class="form-group">
+                    <label asp-for="Notes">الملاحظات:</label>
+                    <textarea asp-for="Notes" id="notes" class="form-control" placeholder="الملاحظات..."></textarea>
+                </div>
+                <br />
+                <!-- زر الإرسال في المنتصف -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-white" style="background-color: white; color: black; border: 1px solid black;">
+                        إرسال
+                    </button>
+                </div>
+            </form>
+
+            <script>
+                const recipientSelect = document.getElementById('recipientSelect');
+                const recipientNameInput = document.getElementById('recipientName');
+                const recipientJobTitleInput = document.getElementById('recipientJobTitle');
+
+                recipientSelect.addEventListener('change', function () {
+                    const selectedOption = this.options[this.selectedIndex];
+                    const [jobTitle, fullName] = selectedOption.text.split(' - '); // تقسيم النص إلى المسمى الوظيفي والاسم
+                    recipientNameInput.value = fullName.trim();
+                    recipientJobTitleInput.value = jobTitle.trim();
+                });
+            </script>
+            <br />
+            <div class="text-center">
+                <a asp-controller="Account" asp-action="HomePage" class="text-decoration-none mt-3">الرجوع</a>
+            </div>
+        </div>
+    </div>
+</div>

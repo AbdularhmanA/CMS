@@ -1,0 +1,60 @@
+﻿@model CMSApp.ViewModels.TransactionDetailsViewModel
+<link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true">
+<div class="container">
+    <header>
+        <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+        <div class="header-text" style="text-align:center">
+            <h1>أمانة منطقة حائل</h1>
+            <h2>HAIL REGION MUNICIPALITY</h2>
+        </div>
+        <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+    </header>
+    </div>
+<div class="transaction-details">
+    <h1 class="page-title">تفاصيل المعاملة</h1>
+
+    <div class="details-container">
+        <div class="detail-item"><strong>اسم المرسل:</strong> <span>@Model.FullName</span></div>
+        <div class="detail-item"><strong>المسمى الوظيفي:</strong> <span>@Model.JobTitle</span></div>
+        <div class="detail-item"><strong>رقم المعاملة:</strong> <span>@Model.TransactionNumber</span></div>
+        <div class="detail-item"><strong>المستلم:</strong> <span>@Model.Recipient</span></div>
+        <div class="detail-item"><strong>نوع المعاملة:</strong> <span>@Model.TransactionType</span></div>
+        <div class="detail-item"><strong>ملاحظات:</strong> <span>@Model.Notes</span></div>
+
+        @if (Model.Attachments != null && Model.Attachments.Length > 0)
+        {
+            <div class="attachment-link">
+                <a href="@Url.Action("DownloadAttachment", "Transaction", new { transactionNumber = Model.TransactionNumber })" class="btn btn-link">تحميل المرفقات</a>
+            </div>
+        }
+        else
+        {
+            <div class="attachment-link">
+                <span>لا توجد مرفقات لتحميلها.</span>
+            </div>
+        }
+    </div>
+
+    <div class="action-buttons">
+        <form asp-action="AcceptTransaction" method="post" class="action-form">
+            <input type="hidden" name="transactionNumber" value="@Model.TransactionNumber" />
+            <button type="submit" class="btn btn-success">قبول</button>
+        </form>
+
+        <form asp-action="RejectTransaction" method="post" class="action-form" onsubmit="return confirmReject();">
+            <input type="hidden" name="transactionNumber" value="@Model.TransactionNumber" />
+            <button type="submit" class="btn btn-danger">رفض</button>
+        </form>
+
+      
+
+
+        <a asp-action="TransactionList" class="btn btn-secondary">الرجوع للقائمة</a>
+    </div>
+    <script>
+        function confirmReject() {
+            return confirm("هل أنت متأكد أنك تريد رفض هذه المعاملة؟");
+        }
+    </script>
+</div>
+

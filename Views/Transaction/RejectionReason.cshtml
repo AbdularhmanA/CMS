@@ -1,0 +1,37 @@
+﻿@model CMSApp.ViewModels.RejectionReasonViewModel
+<link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true">
+<div class="container">
+    <header>
+        <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+        <div class="header-text" style="text-align:center">
+            <h1>أمانة منطقة حائل</h1>
+            <h2>HAIL REGION MUNICIPALITY</h2>
+        </div>
+        <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+    </header>
+    </div>
+<div class="rejection-reason">
+    <h1 class="page-title">سبب الرفض</h1>
+    <form asp-action="RejectionReason" method="post">
+        <input type="hidden" asp-for="TransactionNumber" />
+        <div class="form-group">
+            <label for="RejectionReason">سبب الرفض</label>
+            <textarea asp-for="RejectionReason" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">حفظ</button>
+    </form>
+
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger mt-3">
+            @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+            {
+                <p>@error.ErrorMessage</p>
+            }
+        </div>
+    }
+</div>
+
+<div class="text-center">
+    <a asp-controller="Account" asp-action="HomePage" class="text-decoration-none mt-3">الرجوع</a>
+</div>

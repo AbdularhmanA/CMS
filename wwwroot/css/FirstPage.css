@@ -1,0 +1,56 @@
+﻿body {
+    background-color: #f2f2f2;
+    direction: rtl;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: #004d40;
+}
+
+.vision-logo, .municipality-logo {
+    width: 150px;
+    height: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    text-align: center;
+}
+
+.cms-logo h1 {
+    font-size: 60px;
+    color: #004d40;
+    margin-bottom: 30px;
+}
+
+.buttons {
+    width: 100%;
+    max-width: 300px;
+}
+
+    .buttons .btn {
+        margin: 10px 0;
+        padding: 15px;
+        font-size: 18px;
+    }

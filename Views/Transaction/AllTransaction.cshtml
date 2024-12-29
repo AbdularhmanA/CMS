@@ -1,0 +1,51 @@
+﻿@model List<CMSApp.ViewModels.AllTransaction>
+
+
+
+
+<link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true">
+<div class="container">
+    <header>
+        <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+        <div class="header-text" style="text-align:center">
+            <h1>أمانة منطقة حائل</h1>
+            <h2>HAIL REGION MUNICIPALITY</h2>
+        </div>
+        <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+    </header>
+<h2 style="text-align:right">جميع المعاملات </h2>
+
+<table class="table table-striped" style="direction: rtl; text-align: right;">
+    <thead>
+        <tr>
+            <th>رقم المعاملة</th>
+            <th>نوع المعاملة</th>
+            <th>حالة المعاملة</th>
+            <th>طبيعة المعاملة</th>
+            <th>اسم المرسل</th> <!-- عمود اسم المرسل -->
+            <th>اسم المستقبل</th> <!-- عمود اسم المستقبل -->
+            <th>تاريخ الاستلام</th>
+            <th>الإجراء</th>
+            <th>سبب الرفض </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transaction in Model)
+        {
+            <tr>
+                <td>@transaction.TransactionNumber</td>
+                <td>@transaction.TransactionType</td>
+                <td>@transaction.TransactionStatus</td>
+                <td>@transaction.TransactionNature</td>
+                <td>@transaction.SenderName</td> <!-- عرض اسم المرسل -->
+                <td>@transaction.RecipientName</td> <!-- عرض اسم المستقبل -->
+                <td>@transaction.ReceptionDate.ToString("dd/MM/yyyy")</td>
+                <td>@transaction.ConductTransaction</td>
+                <td>@transaction.RejectionReason</td>
+            </tr>
+        }
+    </tbody>
+</table>
+  <div class="text-center">
+                <a asp-controller="Account" asp-action="HomePage" class="text-decoration-none mt-3">الرجوع</a>
+            </div>

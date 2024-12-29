@@ -1,0 +1,162 @@
+﻿/* الخطوط */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #253f3b;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #193636;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo-left, .logo-right {
+    width: 120px;
+}
+
+.header-text {
+    text-align: center;
+    color: #fff;
+}
+
+.header-text h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.header-text h2 {
+    font-size: 16px;
+    margin: 5px 0 0 0;
+    font-weight: normal;
+}
+
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-top: 20px;
+    color: #fff;
+}
+
+
+.form-section {
+    padding: 30px;
+}
+
+.form-section label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+    color: #fff;
+}
+
+input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #000;
+    font-size: 16px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"]::placeholder, input[type="date"]::placeholder {
+    color: #999;
+}
+
+button {
+    display: inline-block;
+    background-color: #1D4E4A;
+    color: #fff;
+    padding: 12px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #163A36;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button#back-btn {
+    background-color: #748C8B;
+}
+
+/* تنسيق الجدول */
+table {
+    width: 100%;
+    margin-top: 30px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px 20px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #1D4E4A;
+    color: white;
+}
+
+td {
+    background-color: #fff;
+    color: #000;
+}
+
+
+.container, .container h1, .container h2, .container p, .table th, .table td {
+    color: white;
+}
+
+
+.btn-info {
+    background-color: white;
+    color: black; 
+    border: none; 
+}
+
+    .btn-info:hover {
+        background-color: #f0f0f0; 
+    }
+.centered {
+ 
+    align-items: center; 
+  
+}
+
+
+/*footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #ddd;
+}*/

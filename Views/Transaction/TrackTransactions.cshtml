@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CMSApp.ViewModels.TrackTransactionsViewModel>
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> المعاملات الصادرة </title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+            <div class="header-text" style="text-align:center" >
+                <h1>أمانة منطقة حائل</h1>
+                <h2>HAIL REGION MUNICIPALITY</h2>
+            </div>
+            <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+        </header>
+
+        <section class="form-section">
+            <h2>المعاملات الصادرة</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>رقم المعاملة</th>
+                        <th>حالة المعاملة</th>
+                        <th>رقم المستقبل</th>
+                        <th>تاريخ الإرسال</th>
+                        <th>حالة الإجراء</th>
+                        <th>اسم الموظف</th> <!-- حقل إضافي لعرض اسم الموظف -->
+                        <th>المسمى الوظيفي</th> <!-- حقل إضافي لعرض المسمى الوظيفي -->
+                        <th>سبب الرفض</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var transaction in Model)
+                    {
+                        <tr>
+                            <td>@transaction.TransactionNumber</td>
+                            <td>@transaction.TransactionStatus</td>
+                            <td>@transaction.Recipient</td>
+                            <td>@transaction.ReceptionDate.ToString("yyyy-MM-dd")</td>
+                            <td>@transaction.ConductTransaction</td>
+                            <td>@transaction.FullName</td> <!-- عرض اسم الموظف -->
+                            <td>@transaction.JobTitle</td> <!-- عرض المسمى الوظيفي -->
+                            <td>@transaction.RejectionReason</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+           
+        </section>
+        <div class="text-center">
+            <a asp-controller="Account" asp-action="HomePage" class="text-decoration-none mt-3">الرجوع</a>
+        </div>
+        <footer>
+            &copy; جميع الحقوق محفوظة - أمانة منطقة حائل
+        </footer>
+    </div>
+
+</body>
+</html>

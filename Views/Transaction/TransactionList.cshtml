@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CMSApp.ViewModels.ReceivingTransactions>
+<link rel="stylesheet" href="~/css/TrackTransactions.css" asp-append-version="true">
+<div class="container">
+    
+       
+    <header>
+        <img src="~/images/Saudi_Vision_2030_logo.svg.png" alt="Vision 2030" class="logo-left" asp-append-version="true">
+        <div class="header-text" style="text-align:center">
+            <h1>أمانة منطقة حائل</h1>
+            <h2>HAIL REGION MUNICIPALITY</h2>
+        </div>
+        <img src="~/images/logo1.png" alt="Hail Region Municipality" class="logo-right" asp-append-version="true">
+    </header>
+
+   
+
+    <h2>المعاملات الواردة </h2>
+
+    <div class="form-section">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>رقم المعاملة</th>
+                    <th>حالة المعاملة</th>
+                    <th>المرسل</th>
+                    <th>تاريخ الاستقبال</th>
+                    <th>إجراءات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var transaction in Model)
+                {
+                    <tr>
+                        <td>@transaction.TransactionNumber</td>
+                        <td>@transaction.TransactionStatus</td>
+                        <td>@transaction.Recipient</td>
+                        <td>@transaction.ReceptionDate.ToString("dd/MM/yyyy")</td>
+                        <td class="text-right">
+                            <a asp-action="TransactionDetails" asp-route-transactionNumber="@transaction.TransactionNumber" class="btn btn-info">عرض المعاملة</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <a asp-controller="Account" asp-action="HomePage" class="text-decoration-none mt-3">الرجوع</a>
+    </div>
+
+    <footer>
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+</div>
+
